@@ -25,29 +25,31 @@ export class BitcoinService {
   public maxt = 60;
   public t: any;
   public timer;
-  public bitcoin: Coin[] = [];
+  public coins: Coin[] = [];
 
   constructor(private http: HttpClient) { 
-    this.starttimer();
+    //this.starttimer();
+    this.t = 'start';
   }
 
   starttimer(){
     this.t = this.maxt;
-    this.timer = setInterval(function(){
-      if(this.t==1){
-        clearInterval(this.timer);
+    this.timer = setInterval(()=>{
+      if(this.t==1)
         this.update();
-      }
       else
         this.t--;
     },1000);
   }
 
   update(){
+    clearInterval(this.timer);
     this.t = 'updating...';
-    this.http.get<Coin>('https://api.coindesk.com/v1/bpi/currentprice/BRL.json').subscribe(function(data){
-      this.bitcoin.unshift(data);
-      this.starttimer();
-    })
+    this.http
+      .get<Coin>('https://api.coindesk.com/v1/bpi/currentprice/BRL.json')
+      .subscribe((data)=>{
+        this.coins.unshift(data);
+        this.starttimer();
+      })
   }
 }

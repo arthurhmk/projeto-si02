@@ -1,1 +1,19 @@
-<p>bitcoin works!</p>
+<h1>Bitcoin</h1>
+<p>{{bitcoin.coins[0].disclaimer}}</p>
+<h2>Bitcoin Rates</h2>
+<div *ngFor="let curr of bitcoin.coins[0].bpi | keyvalue">
+    <h3>{{curr.value.description}}</h3>
+    <p>Price: {{curr.value.rate_float | currency:curr.value.code}}</p>
+</div>
+
+<h3>Rate History</h3>
+<table>
+    <tr>
+        <td>Timestamp</td>
+        <td *ngFor='let curr of bitcoin.coins[0].bpi | keyvalue'>{{curr.key}}</td>
+    </tr>
+    <tr *ngFor='let coin of bitcoin.coins'>
+        <td>{{coin.time.updated}}</td>
+        <td *ngFor='let bpi of coin.bpi | keyvalue'>{{bpi.value.rate_float | currency:bpi.value.code}}</td>
+    </tr>
+</table>

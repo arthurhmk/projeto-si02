@@ -10,7 +10,7 @@ import { BitcoinService } from '../bitcoin.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public timer: BitcoinService) { }
+  constructor(public bitcoin: BitcoinService) { }
 
   ngOnInit(): void {
   }
