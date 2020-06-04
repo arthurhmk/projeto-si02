@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { BitcoinComponent } from './bitcoin/bitcoin.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MarketComponent } from './market/market.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     BitcoinComponent,
-    NavbarComponent
+    NavbarComponent,
+    MarketComponent
   ],
   imports: [
     BrowserModule,

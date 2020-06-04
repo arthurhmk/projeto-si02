@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { BitcoinService } from '../bitcoin.service';
 
 @Component({
   selector: 'app-bitcoin',
@@ -7,9 +7,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./bitcoin.component.css']
 })
 export class BitcoinComponent implements OnInit {
-  response = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private bitcoin: BitcoinService) { }
 
   ngOnInit(): void {
 
