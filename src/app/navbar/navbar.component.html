@@ -9,7 +9,6 @@
         <li class="nav-item" [ngClass]="{'active': this.router.url=='/market'}">
             <a class="nav-link" [routerLink]="['/market']">Market</a>
         </li>
-        
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -20,3 +19,10 @@
         </li>
     </ul>
 </nav>
+<div [ngClass]="(bitcoin.coins[0].bpi.BRL.rate_float>bitcoin.coins[1].bpi.BRL.rate_float)?'text-success':'text-danger'"
+    class = "disabled bg-dark py-3 px-5 rounded"
+    id = "updater"
+    *ngIf='bitcoin.coins[1]'>
+    <p>Price Updated.</p>
+    {{bitcoin.coins[0].bpi.BRL.rate_float | currency:'BRL'}}
+ </div>

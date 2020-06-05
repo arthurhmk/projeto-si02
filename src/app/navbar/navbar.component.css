@@ -1,0 +1,25 @@
+.updater{
+    position: absolute;
+    right:3rem;
+    top:5rem;
+    font-size: 1.4rem;
+    z-index: 1;
+    animation: fadeaway 4s infinite linear;
+    animation-delay: 3s;
+}
+.disabled{
+    position:absolute;
+    display:none;
+}
+.up{
+    color:green;
+}
+.down{
+    color:red;
+}
+
+@keyframes fadeaway {
+    0% {opacity: 1;}
+    50% {opacity: 0;}
+    100% {opacity: 0;}
+}
