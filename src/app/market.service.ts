@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { BitcoinService } from './bitcoin.service';
 
 type TradeHistory = {
-  bought: boolean,
+  time:Date;
   oldcash: number,
   newcash: number,
-  newcurr: number
+  oldbit: number,
+  newbit: number,
+  bitcoinprice:number
 }
 
 @Injectable({
@@ -19,27 +21,24 @@ export class MarketService {
   constructor(public bitcoin: BitcoinService) { }
 
   trade(qt:number){
-    let oldmoney = qt>0? this.cashmoney:this.bitmoney;
-    this.bitmoney+=qt;
-    this.cashmoney+=qt*this.bitcoin.coins[0].bpi.BRL.rate_float;
-    this.addtradehistory(qt,oldmoney);
-  }
+    console.log(this.bitmoney+qt);
+    console.log(this.cashmoney-qt*this.bitcoin.coins[0].bpi.BRL.rate_float);
+    if(this.bitmoney+qt>=0 
+      && this.cashmoney-qt*this.bitcoin.coins[0].bpi.BRL.rate_float>=-9e-4
+      && qt!=0){
 
-  addtradehistory(qt:number, oldmoney:number){
-    if(qt>0){
+      let oldcash = this.cashmoney;
+      let oldbit = this.bitmoney;
+      this.bitmoney+=qt;
+      this.cashmoney-=qt*this.bitcoin.coins[0].bpi.BRL.rate_float;
+
       this.trades.unshift(<TradeHistory>{
-        bought:true,
-        oldcash:oldmoney,
+        time:new Date(),
+        oldcash:oldcash,
         newcash:this.cashmoney,
-        newcurr:qt
-      });
-    }
-    else{
-      this.trades.unshift(<TradeHistory>{
-        bought:false,
-        oldcash:oldmoney,
-        newcash:this.bitmoney,
-        newcurr:qt
+        oldbit:oldbit,
+        newbit:this.bitmoney,
+        bitcoinprice:this.bitcoin.coins[0].bpi.BRL.rate_float
       });
     }
   }

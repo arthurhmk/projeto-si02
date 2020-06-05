@@ -1,1 +1,34 @@
-<p>market works!</p>
+<h1>Marketplace</h1>
+<p>{{bitcoin.coins[0].bpi.BRL.rate_float | currency:'BRL'}}</p>
+<h2>Your Wallet</h2>
+<p>{{market.cashmoney | currency:'BRL'}}</p>
+<p>{{market.bitmoney | number:'1.8-8'}}</p>
+
+<h2>Buy Bitcoin</h2>
+<input type="text" [(ngModel)]="buy" (input)="validatekey($event,true)">
+<input type="submit" value="Buy" (click)="trade(true)">
+<p>{{buyprev | currency:'BRL'}}</p>
+
+<h2>Sell Bitcoin</h2>
+<input type="text" [(ngModel)]="sell" (input)="validatekey($event,false)">
+<input type="submit" value="Sell" (click)="trade(false)">
+<p>{{sellprev | currency:'BRL'}}</p>
+
+<table>
+    <tr>
+        <td>Timestamp</td>
+        <td>Previous Money</td>
+        <td>Current Money</td>
+        <td>Previous Bitcoin</td>
+        <td>Current Bitcoin</td>
+        <td>Bitcoin Price</td>
+    </tr>
+    <tr *ngFor="let trade of market.trades">
+        <td>{{trade.time}}</td>
+        <td>{{trade.oldcash | currency:'BRL'}}</td>
+        <td>{{trade.newcash | currency:'BRL'}}</td>
+        <td>{{trade.oldbit | number:'1.8-8'}}</td>
+        <td>{{trade.newbit | number:'1.8-8'}}</td>
+        <td>{{trade.bitcoinprice | currency:'BRL'}}</td>
+    </tr>
+</table>

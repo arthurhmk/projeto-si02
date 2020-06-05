@@ -48,7 +48,8 @@ export class BitcoinService {
     this.http
       .get<Coin>('https://api.coindesk.com/v1/bpi/currentprice/BRL.json')
       .subscribe((data)=>{
-        this.coins.unshift(data);
+        if(!this.coins[0] || this.coins[0].bpi.BRL.rate_float!=data.bpi.BRL.rate_float)
+          this.coins.unshift(data);
         this.starttimer();
       })
   }
