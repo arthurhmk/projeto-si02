@@ -6,6 +6,7 @@
     z-index: 1;
     animation: fadeaway 4s infinite linear;
     animation-delay: 3s;
+    display: block !important;
 }
 .disabled{
     position:absolute;

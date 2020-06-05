@@ -60,8 +60,8 @@ export class BitcoinService {
     //only runs AFTER this one so I can't capture the element on the second bitcoin update so now I have to make do with the third update.
     if(!(!this.coins[2])){
       let window = document.querySelector('#updater');
-      window.classList.remove('disabled');
-      window.classList.add('updater');
+      window.classList.remove('disabled');//sometimes this doesn't get removed for whatever reason
+      window.classList.add('updater');//add !imporant to this one <---
       setTimeout(()=>{
         window.classList.add('disabled');
         window.classList.remove('updater');
