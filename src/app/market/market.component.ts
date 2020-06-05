@@ -37,12 +37,14 @@ export class MarketComponent implements OnInit {
 
       if(buying){
         if(aux*this.bitcoin.coins[0].bpi.BRL.rate_float>this.market.cashmoney)
-          this.buy = (this.market.cashmoney/this.bitcoin.coins[0].bpi.BRL.rate_float).toFixed(8);
+          e.target.value = (this.market.cashmoney/this.bitcoin.coins[0].bpi.BRL.rate_float).toFixed(8);
+        this.buy = e.target.value;
         this.buyprev = parseFloat(this.buy)*this.bitcoin.coins[0].bpi.BRL.rate_float;
       }
       else{
         if(aux>this.market.bitmoney)
-          this.sell = (this.market.bitmoney).toFixed(8);
+          e.target.value = (this.market.bitmoney).toFixed(8);
+        this.sell = e.target.value;
         this.sellprev = parseFloat(this.sell)*this.bitcoin.coins[0].bpi.BRL.rate_float;
       }
     }

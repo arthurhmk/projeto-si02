@@ -1,19 +1,34 @@
-<h1>Bitcoin</h1>
-<p>{{bitcoin.coins[0].disclaimer}}</p>
-<h2>Bitcoin Rates</h2>
-<div *ngFor="let curr of bitcoin.coins[0].bpi | keyvalue">
-    <h3>{{curr.value.description}}</h3>
-    <p>Price: {{curr.value.rate_float | currency:curr.value.code}}</p>
+<div class="row pb-4 mx-4">
+    <h1 class="text-center col-12">Bitcoin Rates</h1>
+    <p class="card p-2 bg-info text-white col">{{bitcoin.coins[0].disclaimer}}</p>
+</div>
+<div class="row pb-4 m-4 justify-content-between">
+    <div class="col border rounded px-0 mx-1 bg-primary font-weight-bold" *ngFor="let curr of bitcoin.coins[0].bpi | keyvalue">
+        <div class="text-white rounded pt-2">
+            <h2 class="text-center">{{curr.value.description}}</h2>
+        </div>
+        <div class="bg-white border-top p-2 text-center">
+            <span style="font-size:2.5rem">{{curr.value.rate_float | currency:curr.value.code}}</span>
+        </div>
+    </div>
 </div>
 
-<h3>Rate History</h3>
-<table>
-    <tr>
-        <td>Timestamp</td>
-        <td *ngFor='let curr of bitcoin.coins[0].bpi | keyvalue'>{{curr.key}}</td>
-    </tr>
-    <tr *ngFor='let coin of bitcoin.coins'>
-        <td>{{coin.time.updated}}</td>
-        <td *ngFor='let bpi of coin.bpi | keyvalue'>{{bpi.value.rate_float | currency:bpi.value.code}}</td>
-    </tr>
-</table>
+<div class="row mx-4">
+    <div class="col-12">
+        <h2 class="text-center">Rate History</h2>
+    </div>
+    <table class="col-12 border table table-striped text-center" style="font-size:1.4rem">
+        <thead>
+            <tr class="bg-primary text-white">
+                <td>Updated on</td>
+                <td *ngFor='let curr of bitcoin.coins[0].bpi | keyvalue'>{{curr.key}}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let coin of bitcoin.coins'>
+                <td>{{coin.time.updated | date:'dd/MM HH:mm:ss'}}</td>
+                <td *ngFor='let bpi of coin.bpi | keyvalue'>{{bpi.value.rate_float | currency:bpi.value.code}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

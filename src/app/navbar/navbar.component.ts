@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MarketService } from '../market.service';
-import { BitcoinComponent } from '../bitcoin/bitcoin.component';
 import { BitcoinService } from '../bitcoin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +9,7 @@ import { BitcoinService } from '../bitcoin.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public bitcoin: BitcoinService) { }
+  constructor(public router:Router, public bitcoin: BitcoinService) { }
 
   ngOnInit(): void {
   }
